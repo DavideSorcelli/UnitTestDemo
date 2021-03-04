@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dsorcelli.newfeaturesproject.models.Product
 import com.dsorcelli.newfeaturesproject.repository.ProductRepository
-import com.dsorcelli.newfeaturesproject.utils.SimpleDatabase
 import kotlinx.coroutines.launch
 
 class ProductsListVM : ViewModel() {
