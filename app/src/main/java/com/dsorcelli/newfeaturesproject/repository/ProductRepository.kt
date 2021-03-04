@@ -2,7 +2,7 @@ package com.dsorcelli.newfeaturesproject.repository
 
 import com.dsorcelli.newfeaturesproject.utils.SimpleDatabase
 
-class ProductRepository {
+object ProductRepository {
 
     suspend fun getAll() = SimpleDatabase.getAllProducts()
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dsorcelli.newfeaturesproject.models.Product
+import com.dsorcelli.newfeaturesproject.repository.ProductRepository
 import com.dsorcelli.newfeaturesproject.utils.SimpleDatabase
 import kotlinx.coroutines.launch
 
@@ -24,7 +25,7 @@ class ProductsListVM : ViewModel() {
 
     private fun fetchProducts() = viewModelScope.launch {
         isLoadingMut.postValue(true)
-        SimpleDatabase.getAllProducts().let {
+        ProductRepository.getAll().let {
             productsListMut.postValue(it)
         }
         isLoadingMut.postValue(false)
