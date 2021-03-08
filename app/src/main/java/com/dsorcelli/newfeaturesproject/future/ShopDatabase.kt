@@ -1,4 +1,4 @@
-package com.dsorcelli.newfeaturesproject.database
+package com.dsorcelli.newfeaturesproject.future
 
 import android.content.Context
 import androidx.room.Database
@@ -7,24 +7,24 @@ import androidx.room.RoomDatabase
 import com.dsorcelli.newfeaturesproject.models.Product
 
 @Database(entities = [Product::class], version = 1, exportSchema = false)
-abstract class ProductDatabase : RoomDatabase() {
+abstract class ShopDatabase : RoomDatabase() {
 
     abstract val productDatabaseDAO: ProductDatabaseDAO
 
     companion object {
 
         @Volatile
-        private var INSTANCE: ProductDatabase? = null
+        private var INSTANCE: ShopDatabase? = null
 
-        fun getInstance(context: Context): ProductDatabase {
+        fun getInstance(context: Context): ShopDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        ProductDatabase::class.java,
-                        "sleep_history_database"
+                        ShopDatabase::class.java,
+                        "shop_database"
                     )
                         .fallbackToDestructiveMigration()
                         .build()

@@ -1,4 +1,4 @@
-package com.dsorcelli.newfeaturesproject.database
+package com.dsorcelli.newfeaturesproject.future
 
 import androidx.room.Dao
 import androidx.room.Insert
