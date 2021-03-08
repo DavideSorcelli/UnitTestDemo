@@ -1,6 +1,6 @@
 package com.dsorcelli.newfeaturesproject.repository
 
-import com.dsorcelli.newfeaturesproject.utils.SimpleDatabase
+import com.dsorcelli.newfeaturesproject.database.ProductDao
 
 object ProductRepository {
 
@@ -10,10 +10,10 @@ object ProductRepository {
 
     //Una funzione suspended può essere chiamata solo da un' altra funzione supsended.
     //In questo caso la getAll viene chiamata nell'ambito di una coroutine in ProductsListVM
-    suspend fun getAll() = SimpleDatabase.getAllProducts()
+    suspend fun getAll() = ProductDao.getAllProducts()
 
     suspend fun getAllUnderPrice10() =
-        SimpleDatabase.getAllProducts().filter {
+        ProductDao.getAllProducts().filter {
             it.price < 10.00
         }
 

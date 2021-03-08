@@ -24,5 +24,23 @@ data class Product(
             )
         }
 
+        fun staticProductsList() = listOf(
+            Product(
+                id = 1,
+                name = "Product A",
+                price = 19.99
+            ),
+            Product(
+                id = 2,
+                name = "Product B",
+                price = 35.99
+            ),
+            Product(
+                id = 3,
+                name = "Product C",
+                price = 9.99
+            )
+        )
+
     }
 }
