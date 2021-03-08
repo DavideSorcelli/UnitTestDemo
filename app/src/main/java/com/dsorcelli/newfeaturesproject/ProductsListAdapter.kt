@@ -4,7 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.dsorcelli.newfeaturesproject.databinding.ProductsListItemBinding
 import com.dsorcelli.newfeaturesproject.models.Product
 
 class ProductsListAdapter: RecyclerView.Adapter<ProductsListAdapter.ProductsViewHolder>()
@@ -12,8 +15,8 @@ class ProductsListAdapter: RecyclerView.Adapter<ProductsListAdapter.ProductsView
     var productsList = listOf<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.products_list_item, parent, false)
-        return ProductsViewHolder(itemView)
+        val itemViewBinding = ProductsListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ProductsViewHolder(itemViewBinding)
 
     }
 
@@ -29,10 +32,10 @@ class ProductsListAdapter: RecyclerView.Adapter<ProductsListAdapter.ProductsView
     }
 
 
-     inner class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var productNumberTv: TextView = view.findViewById(R.id.product_number_tv)
-        var productNameTv : TextView = view.findViewById(R.id.product_name_tv)
-        var productPriceTv: TextView = view.findViewById(R.id.product_price_tv)
+     inner class ProductsViewHolder(viewBinding: ProductsListItemBinding) : RecyclerView.ViewHolder(viewBinding.root) {
+        var productNumberTv: TextView = viewBinding.productNumberTv
+        var productNameTv : TextView = viewBinding.productNameTv
+        var productPriceTv: TextView = viewBinding.productPriceTv
     }
 
 }
