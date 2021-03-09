@@ -1,11 +1,16 @@
 package com.dsorcelli.newfeaturesproject
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import com.dsorcelli.newfeaturesproject.databinding.ActivityMainBinding
 import com.dsorcelli.newfeaturesproject.viewmodels.ProductsListVM
+import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 
 class ProductsActivity : AppCompatActivity() {
 
@@ -33,8 +38,8 @@ class ProductsActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         //Si setta come view la root dell'elemento del binding
         setContentView(binding.root)
-
         binding.productsRv.adapter = productsListAdapter
+
         registerObservers()
     }
 
@@ -48,6 +53,14 @@ class ProductsActivity : AppCompatActivity() {
             Log.d(TAG, "Received products update: $it")
             productsListAdapter.productsList = it
             productsListAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.isLoading.observe(this)
+        {
+            if(it)
+                binding.listLoadingProgressBar.visibility = View.VISIBLE
+            else
+                binding.listLoadingProgressBar.visibility = View.GONE
         }
     }
 
