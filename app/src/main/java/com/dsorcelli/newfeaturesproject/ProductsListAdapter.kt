@@ -1,12 +1,18 @@
 package com.dsorcelli.newfeaturesproject
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.dsorcelli.newfeaturesproject.databinding.ProductsListItemBinding
 import com.dsorcelli.newfeaturesproject.models.Product
 
 class ProductsListAdapter(
+    val activity: ProductsActivity,
     var productsList: List<Product> = emptyList()
 ) : RecyclerView.Adapter<ProductsListAdapter.ProductsViewHolder>() {
 
@@ -29,7 +35,16 @@ class ProductsListAdapter(
             productNumberTv.text = product.id.toString()
             productNameTv.text = product.name
             productPriceTv.text = product.price.toString()
+            holder.itemView.setOnClickListener{
+                val intent = Intent( activity , ProductDetailsActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("product_id", product.id)
+                intent.putExtras(bundle)
+                startActivity(activity, intent, bundle)
+            }
         }
+
+
         // with() si usare per passare all'interno della lambda un parametro come this,
         // il codice scritto sopra è equivalente di:
         /*
@@ -40,5 +55,7 @@ class ProductsListAdapter(
     }
 
     override fun getItemCount() = productsList.size
+
+
 
 }

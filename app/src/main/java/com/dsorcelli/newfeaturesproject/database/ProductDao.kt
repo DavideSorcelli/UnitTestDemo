@@ -16,7 +16,7 @@ object ProductDao {
      It can take a parameter and have a return type. However, suspending functions can only be invoked by another suspending function or within a coroutine.
      */
 
-    //Sostanzialmente suspend è presente se  chiamata da altri metodi suspended o da una corooutine.
+    //Sostanzialmente suspend è presente se  chiamata da altri metodi suspended o da una coroutine.
     // In questo caso getAllProducts viene chiamata da getAll in Repository (suspended) a sua volta chiamata da una coroutine nel ViewModel
     suspend fun getAllProducts(): List<Product> {
         delay((3000L..5000).random())
@@ -27,5 +27,18 @@ object ProductDao {
 //        }
 //        return productsList
     }
+
+    suspend fun getProductById(productId : Int): Product {
+        var product = Product(productId,"",0.0)
+        Product.staticProductsList().forEach {
+            //it è l'elemento della list (Product)
+            if(it.id == productId )
+                 product = Product(it.id, it.name, it.price)
+
+        }
+        return product
+    }
+
+
 
 }

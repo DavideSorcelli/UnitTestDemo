@@ -26,7 +26,7 @@ class ProductsActivity : AppCompatActivity() {
 
     // evita di usare le var se puoi, in questo caso productsListAdapter rimarrà sempre di tipo ProductsListAdapter,
     // quindi non avrebbe senso usare una lateinit var, puoi inizializzarlo già vuoto al momento della dichiarazione
-    private val productsListAdapter: ProductsListAdapter = ProductsListAdapter()
+    private val productsListAdapter: ProductsListAdapter = ProductsListAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,6 @@ class ProductsActivity : AppCompatActivity() {
         //Si setta come view la root dell'elemento del binding
         setContentView(binding.root)
         binding.productsRv.adapter = productsListAdapter
-
         registerObservers()
     }
 

@@ -17,4 +17,7 @@ object ProductRepository {
             it.price < 10.00
         }
 
+    suspend fun getProdById(productId : Int) = ProductDao.getProductById(productId)
+
+
 }

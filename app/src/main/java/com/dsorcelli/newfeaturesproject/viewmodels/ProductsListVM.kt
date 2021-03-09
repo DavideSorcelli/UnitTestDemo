@@ -40,4 +40,6 @@ class ProductsListVM : ViewModel() {
         isLoadingMut.postValue(false)
     }
 
+
+
 }

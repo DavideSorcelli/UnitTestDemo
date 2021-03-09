@@ -58,12 +58,14 @@ dependencies {
 
     //Recycler View
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.wear:wear:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     // required if you want to use Mockito for unit tests
     testImplementation 'org.mockito:mockito-core:3.7.7'
     // required if you want to use Mockito for Android tests
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    compileOnly 'com.google.android.wearable:wearable:2.6.0'
 
 
     //Adding room
@@ -76,5 +78,10 @@ dependencies {
 
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
+
+    //AddING NAVIGATION
+    def navigation_version = "2.3.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
 }
