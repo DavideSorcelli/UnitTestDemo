@@ -28,17 +28,7 @@ object ProductDao {
 //        return productsList
     }
 
-    suspend fun getProductById(productId : Int): Product {
-        var product = Product(productId,"",0.0)
-        Product.staticProductsList().forEach {
-            //it è l'elemento della list (Product)
-            if(it.id == productId )
-                 product = Product(it.id, it.name, it.price)
-
-        }
-        return product
-    }
-
-
+    fun getProductById(productId : Int) =
+        Product.staticProductsList().firstOrNull { it.id == productId }
 
 }

@@ -29,6 +29,7 @@ class ProductsListVM : ViewModel() {
     // E poi chiama Repository che fa da interfaccia rispetto al Database e a chiamate HTTP che invece non vanno toccate dal programma
 
     private fun fetchProducts() = viewModelScope.launch {
+
         isLoadingMut.postValue(true)
 
         //let permette di eseguire il blocco di funzione che viene dopo sull'elemento che l'ha chiamata
@@ -37,9 +38,10 @@ class ProductsListVM : ViewModel() {
         ProductRepository.getAll().let {
             productsListMut.postValue(it)
         }
+
+//        productsListMut.postValue(ProductRepository.getAll())
+
         isLoadingMut.postValue(false)
     }
-
-
 
 }

@@ -1,18 +1,15 @@
 package com.dsorcelli.newfeaturesproject
 
-import android.opengl.Visibility
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.observe
 import com.dsorcelli.newfeaturesproject.databinding.ActivityMainBinding
+import com.dsorcelli.newfeaturesproject.utils.show
 import com.dsorcelli.newfeaturesproject.viewmodels.ProductsListVM
-import java.lang.Boolean.FALSE
-import java.lang.Boolean.TRUE
 
-class ProductsActivity : AppCompatActivity() {
+class ProductsActivity : AppCompatActivity(), ProductsListAdapter.ProductListItemFace {
 
     //MVVM (Model-view-viewmodel)
     // L'activity/fragment (V) si occupa di aggiornare le viste.
@@ -26,7 +23,7 @@ class ProductsActivity : AppCompatActivity() {
 
     // evita di usare le var se puoi, in questo caso productsListAdapter rimarrà sempre di tipo ProductsListAdapter,
     // quindi non avrebbe senso usare una lateinit var, puoi inizializzarlo già vuoto al momento della dichiarazione
-    private val productsListAdapter: ProductsListAdapter = ProductsListAdapter(this)
+    private val productsListAdapter: ProductsListAdapter = ProductsListAdapter(listener = this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,17 +51,21 @@ class ProductsActivity : AppCompatActivity() {
             productsListAdapter.notifyDataSetChanged()
         }
 
-        viewModel.isLoading.observe(this)
-        {
-            if(it)
-                binding.listLoadingProgressBar.visibility = View.VISIBLE
-            else
-                binding.listLoadingProgressBar.visibility = View.GONE
+        viewModel.isLoading.observe(this) {
+            binding.listLoadingProgressBar.show(it)
         }
+    }
+
+
+    override fun onProductClick(productId: Int) {
+        val intent = Intent(this, ProductDetailsActivity::class.java)
+        intent.putExtra(EXTRA_PRODUCT_ID, productId)
+        startActivity(intent)
     }
 
     companion object {
         private const val TAG = "ProductsActivity"
+        const val EXTRA_PRODUCT_ID = "EXTRA_PRODUCT_ID"
     }
 
 }

@@ -1,79 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/box_inset_layout_padding"
-    tools:context=".ProductDetailsActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_md"
+    tools:context=".ProductDetailsActivity">
 
-
-    <LinearLayout
-
-        android:layout_marginTop="16dp"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:text="@string/product_details_name_label" />
 
-        <TextView
-            android:id="@+id/details_name_label_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Name: " />
-
-        <TextView
-            android:id="@+id/details_name_value_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="24sp"
-            android:text="TextView" />
-    </LinearLayout>
-
-    <LinearLayout
-
-        android:layout_marginTop="16dp"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv_product_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:text="@string/product_details_id_label" />
 
-        <TextView
-            android:id="@+id/details_id_label_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="ID: " />
-
-        <TextView
-            android:id="@+id/details_id_value_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="24sp"
-            android:text="TextView" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="16dp"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv_product_price"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:text="@string/product_details_price_label" />
 
-        <TextView
-            android:id="@+id/details_price_label_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Price: " />
-
-        <TextView
-            android:id="@+id/details_price_value_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="24sp"
-            android:text="TextView" />
-    </LinearLayout>
 </LinearLayout>

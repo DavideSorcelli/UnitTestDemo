@@ -1,13 +1,11 @@
 package com.dsorcelli.newfeaturesproject
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.observe
-import com.dsorcelli.newfeaturesproject.databinding.ActivityMainBinding
 import com.dsorcelli.newfeaturesproject.databinding.ActivityProductDetailBinding
 import com.dsorcelli.newfeaturesproject.viewmodels.ProductDetailsVM
-import com.dsorcelli.newfeaturesproject.viewmodels.ProductsListVM
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -20,19 +18,24 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         //Si setta come view la root dell'elemento del binding
         setContentView(binding.root)
-        val productId = intent.getIntExtra("product_id", 0)
+
+        val productId = intent.getIntExtra(ProductsActivity.EXTRA_PRODUCT_ID, 0)
         print("productID = $productId")
 
         viewModel.retrieveProduct(productId)
 
         viewModel.product.observe(this) {
-            binding.detailsIdValueTv.text = it.id.toString()
-            binding.detailsNameValueTv.text = it.name
-            binding.detailsPriceValueTv.text = it.price.toString()
-
+            it?.let {
+                with(binding) {
+                    tvProductName.text = it.name
+                    tvProductId.text = it.id.toString()
+                    tvProductPrice.text = it.price.toString()
+                }
+            } ?: run {
+                Log.e("ProductDetailActivity", "Product not found")
+            }
         }
     }
-
 
 
 }

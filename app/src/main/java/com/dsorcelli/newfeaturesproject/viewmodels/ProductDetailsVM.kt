@@ -9,15 +9,14 @@ import com.dsorcelli.newfeaturesproject.repository.ProductRepository
 import kotlinx.coroutines.launch
 
 class ProductDetailsVM : ViewModel() {
-    val product : LiveData<Product>
+
+    val product: LiveData<Product>
         get() = productMut
     private val productMut = MutableLiveData<Product>()
 
-
-
     fun retrieveProduct(productId: Int) = viewModelScope.launch {
         ProductRepository.getProdById(productId).let {
-           productMut.value = it
+           productMut.postValue(it)
         }
     }
 }
