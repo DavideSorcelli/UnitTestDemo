@@ -10,11 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewFeaturesProject">
 
-        <activity
-            android:name=".ProductDetailsActivity"
-            android:label="@string/title_activity_product_detail">
-        </activity>
-        <activity android:name=".ProductsActivity">
+        <activity android:name=".ShopActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
