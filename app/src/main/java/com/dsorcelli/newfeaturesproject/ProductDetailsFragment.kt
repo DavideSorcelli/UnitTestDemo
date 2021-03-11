@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dsorcelli.newfeaturesproject.databinding.FragmentProductDetailBinding
 import com.dsorcelli.newfeaturesproject.viewmodels.ProductDetailsVM
@@ -16,8 +15,7 @@ import com.dsorcelli.newfeaturesproject.viewmodels.ProductDetailsVM
 class ProductDetailsFragment : Fragment() {
 
     private var _binding: FragmentProductDetailBinding? = null
-    private val binding
-        get() = _binding!!
+    private val binding get() = _binding!!
 
     // queste si chiamano delegate properties
     // per maggiori info vedi https://kotlinlang.org/docs/delegated-properties.html
@@ -32,9 +30,6 @@ class ProductDetailsFragment : Fragment() {
 
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
-
-        // rimpiazzato da by navArgs
-//        val args = ProductDetailsFragmentArgs.fromBundle(requireArguments())
 
         val productId = args.productId
         Log.d(TAG, "Product ID: $productId")
@@ -54,8 +49,7 @@ class ProductDetailsFragment : Fragment() {
         }
 
         binding.btnProductDetailsBack.setOnClickListener {
-            binding.root.findNavController()
-                .navigate(R.id.action_productDetailsFragment_to_productsListFragment)
+            findNavController().navigateUp()
         }
 
         //Si setta come view la root dell'elemento del binding
@@ -64,7 +58,7 @@ class ProductDetailsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding=null
+        _binding = null
     }
 
     companion object {

@@ -15,3 +15,10 @@ Trasformare in fragment ProductActivity -> ProductsFragment e ProductDetailActiv
 Utilizzare il navigator per navigare tra i due fragment e passare l'id del prodotto tramite il plugin safeArgs.
 Definire un grafo di navigazione e inserire nell'activity principale un NavHostFragment.
 Inserire nel fragment ProductDetail un pulsante per tornare alla lista dei prodotti.
+
+
+- quando il device è un telefono in potrait visualizzi gli item dell'adapter come una lista.
+quando il device è un telefono in landscape visualizzi gli item a griglia (2 colonne).
+quando il device è un tablet (portrait/landscape) mostri gli item in una griglia 2 colonne.
+definire dimen dei font, dei margini, padding, etc per tablet
+aggiungere supporto alle immagini dei prodotti (formato vettoriale)

@@ -3,6 +3,7 @@ package com.dsorcelli.newfeaturesproject.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.dsorcelli.newfeaturesproject.R
 import kotlin.random.Random
 import kotlin.random.Random.Default.nextInt
 
@@ -13,7 +14,8 @@ data class Product(
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name="price")
-    val price: Double
+    val price: Double,
+    val img: Int = -1
 ) {
 
     companion object {
@@ -35,7 +37,8 @@ data class Product(
             Product(
                 id = 1,
                 name = "Product A",
-                price = 19.99
+                price = 19.99,
+                img = R.drawable.ic_beer
             ),
             Product(
                 id = 2,
@@ -46,6 +49,16 @@ data class Product(
                 id = 3,
                 name = "Product C",
                 price = 9.99
+            ),
+            Product(
+                id = 4,
+                name = "Product D",
+                price = 2.50
+            ),
+            Product(
+                id = 5,
+                name = "Product E",
+                price = 6.78
             )
         )
 

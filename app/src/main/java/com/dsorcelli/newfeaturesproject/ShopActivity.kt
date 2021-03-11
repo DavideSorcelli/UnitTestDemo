@@ -1,17 +1,17 @@
 package com.dsorcelli.newfeaturesproject
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.dsorcelli.newfeaturesproject.databinding.ActivityMainBinding
-import com.dsorcelli.newfeaturesproject.utils.show
-import com.dsorcelli.newfeaturesproject.viewmodels.ProductsListVM
 
 class ShopActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navHostFragment: NavHostFragment
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +23,13 @@ class ShopActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         //Si setta come view la root dell'elemento del binding
         setContentView(binding.root)
+
+        // setup navigation
+        navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+        setupActionBarWithNavController(navController)
     }
-
-
-
-
 
 }

@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.dsorcelli.newfeaturesproject.databinding.FragmentProductsListBinding
 import com.dsorcelli.newfeaturesproject.utils.show
 import com.dsorcelli.newfeaturesproject.viewmodels.ProductsListVM
@@ -75,7 +74,7 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
 
 
     override fun onProductClick(productId: Int) {
-        binding.root.findNavController().navigate(
+        findNavController().navigate(
             ProductsListFragmentDirections
                 .actionProductsListFragmentToProductDetailsFragment(productId)
         )

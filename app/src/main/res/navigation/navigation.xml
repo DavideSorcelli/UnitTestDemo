@@ -8,22 +8,18 @@
     <fragment
         android:id="@+id/productsListFragment"
         android:name="com.dsorcelli.newfeaturesproject.ProductsListFragment"
-        android:label="ProductsListFragment"
+        android:label="@string/product_list_section_title"
         tools:layout="@layout/fragment_products_list">
         <action
             android:id="@+id/action_productsListFragment_to_productDetailsFragment"
-            app:destination="@id/productDetailsFragment"
-            app:popUpTo="@id/productsListFragment" />
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.dsorcelli.newfeaturesproject.ProductDetailsFragment"
-        android:label="ProductDetailsFragment"
+        android:label="@string/product_details_section_title"
         tools:layout="@layout/fragment_product_detail">
-        <action
-            android:id="@+id/action_productDetailsFragment_to_productsListFragment"
-            app:destination="@id/productsListFragment" />
         <argument
             android:name="productId"
             app:argType="integer" />
