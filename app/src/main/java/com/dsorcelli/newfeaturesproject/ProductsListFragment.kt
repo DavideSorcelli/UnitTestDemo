@@ -2,12 +2,11 @@ package com.dsorcelli.newfeaturesproject
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.dsorcelli.newfeaturesproject.databinding.FragmentProductsListBinding
 import com.dsorcelli.newfeaturesproject.utils.show
@@ -15,7 +14,6 @@ import com.dsorcelli.newfeaturesproject.viewmodels.ProductsListVM
 
 
 class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace {
-
 
     //MVVM (Model-view-viewmodel)
     // L'activity/fragment (V) si occupa di aggiornare le viste.
@@ -31,7 +29,11 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
     // quindi non avrebbe senso usare una lateinit var, puoi inizializzarlo già vuoto al momento della dichiarazione
     private val productsListAdapter: ProductsListAdapter = ProductsListAdapter(listener = this)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         // Inflate the layout for this fragment
         //VIEW BINDING (!= DATA BINDING)
         //Facendo inflating del layout tramite il metodo statico inflate si riceve l'elemento di binding rispetto a quella view.
@@ -53,7 +55,7 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
         // viene implementato un observer che aggiorna le viste automaticamente con i nuovi dati
         //non appena ursti ultimi (liveData) cambiano.
         viewModel.productsList.observe(viewLifecycleOwner) {
-            Log.d(ProductsListFragment.TAG, "Received products update: $it")
+            Log.d(TAG, "Received products update: $it")
             productsListAdapter.productsList = it
             productsListAdapter.notifyDataSetChanged()
         }
@@ -65,12 +67,14 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
 
 
     override fun onProductClick(productId: Int) {
-      binding.root.findNavController().navigate(ProductsListFragmentDirections.actionProductsListFragmentToProductDetailsFragment(productId))
+        binding.root.findNavController().navigate(
+            ProductsListFragmentDirections
+                .actionProductsListFragmentToProductDetailsFragment(productId)
+        )
 
     }
 
-
-    companion object{
+    companion object {
         private const val TAG = "ProductsListFragment"
     }
 

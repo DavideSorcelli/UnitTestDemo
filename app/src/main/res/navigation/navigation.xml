@@ -15,6 +15,7 @@
             app:destination="@id/productDetailsFragment"
             app:popUpTo="@id/productsListFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.dsorcelli.newfeaturesproject.ProductDetailsFragment"
@@ -27,4 +28,5 @@
             android:name="productId"
             app:argType="integer" />
     </fragment>
+
 </navigation>
