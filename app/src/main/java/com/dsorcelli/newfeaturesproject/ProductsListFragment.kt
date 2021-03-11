@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.dsorcelli.newfeaturesproject.databinding.FragmentProductsListBinding
 import com.dsorcelli.newfeaturesproject.utils.show
@@ -22,7 +23,14 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
 
     //View Binding - per creare una corrispoindenza tra elementi della vista e modello dati si usa view binding (versione leggera del data binding).
     //L'oggetto Binding viene creato sulla classe di cui rappresenta i dati (ActivityMainBinding in questo caso, implicita)
-    private lateinit var binding: FragmentProductsListBinding
+
+    private var _binding: FragmentProductsListBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!! //quando chiami binding, stai chiamando la sua versione nullable(?) ma facendo in modo che
+    //se fosse null (!!) una chiamata su essa generi una NPE.
+    //Le inizializzazioni e distruzioni saranno fatte su _binding, la chiamata degli elementi verrà fatta su binding per il controllo non null
+
     private val viewModel by viewModels<ProductsListVM>()
 
     // evita di usare le var se puoi, in questo caso productsListAdapter rimarrà sempre di tipo ProductsListAdapter,
@@ -39,7 +47,7 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
         //Facendo inflating del layout tramite il metodo statico inflate si riceve l'elemento di binding rispetto a quella view.
         //Per ogni elemento xml viene generato un binding object con nome ispirato (ActvityMainBinding per activity_main.xml)
         //In questo modo gli elementi delle viste sono accessibile direttamente tramite getter/setters senza findViewById
-        binding = FragmentProductsListBinding.inflate(inflater, container, false)
+        _binding = FragmentProductsListBinding.inflate(inflater, container, false)
         //Si torna come view la root dell'elemento di binding
 
         binding.productsRv.adapter = productsListAdapter
@@ -73,6 +81,13 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
         )
 
     }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
     companion object {
         private const val TAG = "ProductsListFragment"
