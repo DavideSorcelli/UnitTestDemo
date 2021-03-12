@@ -3,4 +3,12 @@
     <dimen name="spacing_sm">4dp</dimen>
     <dimen name="spacing_md">8dp</dimen>
     <dimen name="spacing_lg">16dp</dimen>
+
+    <dimen name="txtsize_sm">12sp</dimen>
+    <dimen name="txtsize_md">20sp</dimen>
+    <dimen name="txtsize_lg">28sp</dimen>
+
+    <dimen name="products_list_icons_size_sm">40dp</dimen>
+    <dimen name="products_list_icons_size_md">60dp</dimen>
+    <dimen name="products_list_icons_size_lg">80dp</dimen>
 </resources>

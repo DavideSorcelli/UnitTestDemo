@@ -28,6 +28,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <ImageView
+                    android:id="@+id/product_iv"
+                    android:layout_width="@dimen/products_list_icons_size_sm"
+                    android:layout_height="@dimen/products_list_icons_size_sm"
+                    android:layout_margin="@dimen/spacing_md"
+                    app:srcCompat="@drawable/ic_beer" />
+
                 <TextView
                     android:id="@+id/product_number_tv"
                     android:layout_width="wrap_content"
@@ -54,15 +61,6 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/product_iv"
-                android:layout_width="@dimen/products_list_icons_size_sm"
-                android:layout_height="@dimen/products_list_icons_size_sm"
-                android:layout_margin="@dimen/spacing_md"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_beer" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

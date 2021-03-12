@@ -15,7 +15,7 @@ data class Product(
     val name: String,
     @ColumnInfo(name="price")
     val price: Double,
-    val img: Int = -1
+    val img: Int = -1 //risorsa R.drawable (rappresentato da intero)
 ) {
 
     companion object {
@@ -43,22 +43,26 @@ data class Product(
             Product(
                 id = 2,
                 name = "Product B",
-                price = 35.99
+                price = 35.99,
+                img = R.drawable.ic_ice_cream_cone
             ),
             Product(
                 id = 3,
                 name = "Product C",
-                price = 9.99
+                price = 9.99,
+                img = R.drawable.ic_lemonade
             ),
             Product(
                 id = 4,
                 name = "Product D",
-                price = 2.50
+                price = 2.50,
+                img = R.drawable.ic_popsicle_stick
             ),
             Product(
                 id = 5,
                 name = "Product E",
-                price = 6.78
+                price = 6.78,
+                img = R.drawable.ic_watermelon
             )
         )
 
