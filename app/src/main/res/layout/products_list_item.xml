@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- questo ConstraintLayout è inutile, puoi usare direttamente
+    la CardView come root del layout -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,6 +9,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- hai usato layout_height=0dp (match constraint),
+        ma questa card view non ha un bottom constraint,
+        preferibile usare wrap content per evitare problemi futuri -->
+    <!-- niente elevation e radius su una CardView ? :) -->
     <androidx.cardview.widget.CardView
         android:id="@+id/product_item_cv"
         android:layout_width="match_parent"
@@ -19,6 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- non usare margin sugli elementi interni, piuttosto metti un paddingStart
+                e un paddinEnd al LinearLayout che fa da contenitore.
+                Alle view interne basta mettere poi un marginTop -->
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
@@ -54,6 +64,8 @@
 
             </LinearLayout>
 
+            <!-- mancava contentDescription, non serve a niente ma mettici qualcosa,
+                cerca sempre di lasciare meno warning possibili nel codice -->
             <ImageView
                 android:id="@+id/product_iv"
                 android:layout_width="@dimen/products_list_icons_size_sm"
@@ -62,7 +74,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_beer" />
+                app:srcCompat="@drawable/ic_beer"
+                android:contentDescription="@string/app_name" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
