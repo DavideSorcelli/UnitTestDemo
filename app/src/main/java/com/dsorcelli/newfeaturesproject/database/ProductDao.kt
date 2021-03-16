@@ -18,7 +18,7 @@ object ProductDao {
 
     //Sostanzialmente suspend è presente se  chiamata da altri metodi suspended o da una coroutine.
     // In questo caso getAllProducts viene chiamata da getAll in Repository (suspended) a sua volta chiamata da una coroutine nel ViewModel
-    suspend fun getAllProducts(): List<Product> {
+    /*suspend fun getAllProducts(): List<Product> {
 //        delay((3000L..5000).random())
         delay(500)
         return Product.staticProductsList()
@@ -32,4 +32,4 @@ object ProductDao {
     fun getProductById(productId : Int) =
         Product.staticProductsList().firstOrNull { it.id == productId }
 
-}
+*/}

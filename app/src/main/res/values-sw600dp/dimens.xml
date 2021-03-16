@@ -12,4 +12,8 @@
     <dimen name="products_list_icons_size_sm">70dp</dimen>
     <dimen name="products_list_icons_size_md">100dp</dimen>
     <dimen name="products_list_icons_size_lg">130dp</dimen>
+    <dimen name="products_list_icons_size_xxl">450dp</dimen>
+
+    <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_elev">4dp</dimen>
 </resources>

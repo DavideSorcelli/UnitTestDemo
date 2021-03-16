@@ -31,11 +31,10 @@ class ProductsListAdapter(
         val product = productsList[position]
 
         with(holder.binding) {
-
             productNumberTv.text = product.id.toString()
             productNameTv.text = product.name
             productPriceTv.text = product.price.toString()
-            productIv?.setImageResource(product.img)
+            productIv.setImageResource(product.img!!)
 
             holder.itemView.setOnClickListener {
                 listener?.onProductClick(product.id)

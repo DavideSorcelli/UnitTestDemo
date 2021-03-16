@@ -39,8 +39,8 @@ class ProductDetailsFragment : Fragment() {
         viewModel.product.observe(viewLifecycleOwner) {
             it?.let {
                 with(binding) {
+                    ivProductImg.setImageResource(it.img!!)
                     tvProductName.text = it.name
-                    tvProductId.text = it.id.toString()
                     tvProductPrice.text = it.price.toString()
                 }
             } ?: run {

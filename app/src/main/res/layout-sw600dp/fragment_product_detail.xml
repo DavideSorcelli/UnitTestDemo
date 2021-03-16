@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/spacing_md"
         android:textSize="@dimen/txtsize_lg"
         android:text="@string/product_details_name_label" />
-
+    
 
     <TextView
         android:id="@+id/tv_product_price"
@@ -29,6 +29,7 @@
         android:layout_marginTop="@dimen/spacing_md"
         android:textSize="@dimen/txtsize_md"
         android:text="@string/product_details_price_label" />
+
 
     <Button
         android:id="@+id/btn_product_meteo"
@@ -41,7 +42,7 @@
         android:id="@+id/btn_product_details_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginTop="16dp"
         android:text="@string/back" />
 
 </LinearLayout>

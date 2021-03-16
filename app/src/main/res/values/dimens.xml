@@ -8,7 +8,11 @@
     <dimen name="txtsize_md">20sp</dimen>
     <dimen name="txtsize_lg">28sp</dimen>
 
-    <dimen name="products_list_icons_size_sm">40dp</dimen>
-    <dimen name="products_list_icons_size_md">60dp</dimen>
-    <dimen name="products_list_icons_size_lg">80dp</dimen>
+    <dimen name="products_list_icons_size_sm">70dp</dimen>
+    <dimen name="products_list_icons_size_md">90dp</dimen>
+    <dimen name="products_list_icons_size_lg">110dp</dimen>
+    <dimen name="products_list_icons_size_xxl">300dp</dimen>
+
+    <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_elev">4dp</dimen>
 </resources>

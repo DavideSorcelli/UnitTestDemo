@@ -64,5 +64,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_ver"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_ver"
 
+    //Retrofit2 + Moshi converter
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_ver"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_ver"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_ver"
     testImplementation 'junit:junit:4.13.2'
 }

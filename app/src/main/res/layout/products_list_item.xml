@@ -2,8 +2,7 @@
 
 <!-- questo ConstraintLayout è inutile, puoi usare direttamente
     la CardView come root del layout -->
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,6 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        android:elevation="@dimen/card_elev"
+        app:cardCornerRadius="@dimen/card_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,6 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:paddingStart="@dimen/spacing_sm"
+                android:paddingEnd="@dimen/spacing_sm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -42,7 +45,7 @@
                     android:id="@+id/product_number_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_sm"
+                    android:layout_marginTop="@dimen/spacing_sm"
                     android:textSize="@dimen/txtsize_sm"
                     tools:text="Product number" />
 
@@ -50,7 +53,7 @@
                     android:id="@+id/product_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_sm"
+                    android:layout_marginTop="@dimen/spacing_sm"
                     android:textSize="@dimen/txtsize_md"
                     tools:text="Product name" />
 
@@ -58,7 +61,7 @@
                     android:id="@+id/product_price_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_sm"
+                    android:layout_marginTop="@dimen/spacing_sm"
                     android:textSize="@dimen/txtsize_md"
                     tools:text="Product price" />
 
@@ -71,11 +74,11 @@
                 android:layout_width="@dimen/products_list_icons_size_sm"
                 android:layout_height="@dimen/products_list_icons_size_sm"
                 android:layout_margin="@dimen/spacing_md"
+                android:contentDescription="@string/app_name"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_beer"
-                android:contentDescription="@string/app_name" />
+                app:srcCompat="@drawable/ic_beer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

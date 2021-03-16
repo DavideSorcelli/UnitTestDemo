@@ -1,5 +1,6 @@
 package com.dsorcelli.newfeaturesproject.future
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -8,7 +9,7 @@ import com.dsorcelli.newfeaturesproject.models.Product
 
 @Dao
 interface ProductDatabaseDAO {
-//DAO: Data Access Object -> interf accia per operare sul DB che rappresenta
+//DAO: Data Access Object -> interfaccia per operare sul DB che rappresenta
 
     @Insert
     fun insert(product: Product)
@@ -17,10 +18,10 @@ interface ProductDatabaseDAO {
     fun update(product: Product)
 
     @Query("SELECT * FROM products WHERE id= :id")
-    fun get(id: Int): Product?
+    fun getById(id: Int): Product?
 
     @Query("SELECT * FROM products")
-    fun getAll(id: Int): Product?
+    fun getAll() : List<Product>?
 
     @Query("DELETE FROM products")
     fun clear()

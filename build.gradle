@@ -5,6 +5,8 @@ buildscript {
         kotlin_ver = "1.4.31"
         room_ver = "2.2.6"
         navigation_ver = "2.3.4"
+        retrofit_ver = "2.9.0"
+        moshi_ver = "1.11.0"
     }
 
     repositories {
