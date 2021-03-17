@@ -18,10 +18,10 @@ interface ProductDatabaseDAO {
     fun update(product: Product)
 
     @Query("SELECT * FROM products WHERE id= :id")
-    fun getById(id: Int): Product?
+    suspend fun getById(id: Int): Product
 
     @Query("SELECT * FROM products")
-    fun getAll() : List<Product>?
+    suspend fun getAll() : List<Product>
 
     @Query("DELETE FROM products")
     fun clear()

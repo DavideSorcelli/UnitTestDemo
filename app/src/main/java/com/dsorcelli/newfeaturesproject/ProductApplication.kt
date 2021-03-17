@@ -1,13 +1,21 @@
 package com.dsorcelli.newfeaturesproject
 
 import android.app.Application
-import com.dsorcelli.newfeaturesproject.future.ShopDatabase
-import com.dsorcelli.newfeaturesproject.repository.ProductRepository
-import kotlinx.coroutines.CoroutineScope
+import android.content.Context
+class ProductApplication : Application() {
 
-class ProductApplication(scope: CoroutineScope) : Application() {
-    // Using by lazy so the database and the repository are only created when they're needed
-    // rather than when the application starts
-    val database by lazy { ShopDatabase.getDatabase(this)}
-    val repository by lazy { ProductRepository(database.productDatabaseDAO()) }
+    init
+    {
+        instance = this
+    }
+
+    companion object {
+
+        lateinit var instance: ProductApplication
+
+        val context: Context
+            get() = instance.applicationContext
+    }
+
+
 }
