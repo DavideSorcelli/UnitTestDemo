@@ -9,10 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dsorcelli.newfeaturesproject.ProductApplication
 import com.dsorcelli.newfeaturesproject.models.Product
 import com.dsorcelli.newfeaturesproject.utils.vectorDrawableStringToIdMap
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.coroutineContext
 
 object Database {
