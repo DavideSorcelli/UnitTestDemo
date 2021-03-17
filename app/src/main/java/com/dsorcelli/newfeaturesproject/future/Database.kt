@@ -9,6 +9,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dsorcelli.newfeaturesproject.ProductApplication
 import com.dsorcelli.newfeaturesproject.models.Product
 import com.dsorcelli.newfeaturesproject.utils.vectorDrawableStringToIdMap
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
 
 object Database {
@@ -24,14 +28,13 @@ object Database {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
 
-            instance?.let {
+            val productDao = instance.productDao()
 
-                val productDao = it.productDao()
+            //Delete content if exists
+            //-----
 
-                //Delete content if exists
-                //-----
-
-                // Add sample elements.
+            // Add sample elements.
+            GlobalScope.launch {
                 var prod =
                     Product(1, "London", 600.00, vectorDrawableStringToIdMap.get("img_london"))
                 productDao.insert(prod)
@@ -53,10 +56,10 @@ object Database {
                 prod =
                     Product(5, "New York", 900.00, vectorDrawableStringToIdMap.get("img_new_york"))
                 productDao.insert(prod)
-
             }
-
         }
+
+
     }
 
 
@@ -70,7 +73,8 @@ object Database {
     val instance = Room.databaseBuilder(
         ProductApplication.context,
         ShopDatabase::class.java,
-        "shop-database.db")
+        "shop-database.db"
+    )
         .addCallback(productDatabaseCallback)
         .build()
 

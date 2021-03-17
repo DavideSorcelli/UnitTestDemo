@@ -42,6 +42,7 @@ class ProductsListVM : ViewModel() {
         //la products list mut viene settata con i valori ottenuti da Repository
         ProductRepository.getAll().let {
             productsListMut.postValue(it)
+            isLoadingMut.postValue(false)
         }
     }
 

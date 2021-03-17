@@ -12,7 +12,7 @@ interface ProductDatabaseDAO {
 //DAO: Data Access Object -> interfaccia per operare sul DB che rappresenta
 
     @Insert
-    fun insert(product: Product)
+    suspend fun insert(product: Product)
 
     @Update
     fun update(product: Product)
