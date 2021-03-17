@@ -7,7 +7,7 @@ import com.dsorcelli.newfeaturesproject.models.Product
 
 // Declares the DAO as a private property in the constructor. Pass in the DAO
 // instead of the whole database, because you only need access to the DAO
-class ProductRepository() {
+object ProductRepository{
 
     //La classe Repository si occupa di fare da interfaccia tra la ViewModel e il data layer
     //In pratica fornisce dei metodi per prendere i dati dalla classe database invocandone i metodi primitivi

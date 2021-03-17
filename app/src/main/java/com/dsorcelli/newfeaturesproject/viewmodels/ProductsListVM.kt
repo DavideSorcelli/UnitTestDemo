@@ -14,7 +14,7 @@ import kotlin.math.log
 
 class ProductsListVM : ViewModel() {
 
-    private val productRepository = ProductRepository()
+
     val productsList: LiveData<List<Product>> //Dall'esterno si dà accesso a questa, per non dare possibilità alla view di modificarla.
                                             //internamente la VM si poggia alla ProductsListMut che è accessibile trmaite get ma private, pertanto può essere usata solo dalla VM
         get() = productsListMut
@@ -40,13 +40,9 @@ class ProductsListVM : ViewModel() {
         //let permette di eseguire il blocco di funzione che viene dopo sull'elemento che l'ha chiamata
         //in questo caso su la lista di prodotti tornati dal repository
         //la products list mut viene settata con i valori ottenuti da Repository
-        productRepository.getAll().let {
-            print(it)
+        ProductRepository.getAll().let {
+            productsListMut.postValue(it)
         }
-
-//        productsListMut.postValue(ProductRepository.getAll())
-
-        isLoadingMut.postValue(false)
     }
 
 }
