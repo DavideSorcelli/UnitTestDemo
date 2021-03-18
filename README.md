@@ -62,3 +62,15 @@ Se il db esiste già, vuol dire che i prodotti sono già dentro e non c'è bisog
 Modificare i metodi del dao per recuperare la lista dei prodotti e un singolo prodotto tramite id.
 Per le immagini crea un package util e al suo interno una Mappa<String, Int> per recuperare
 le immagini vettoriali tramite il loro id a partire da product.img
+
+- Cambiare i nomi delle classi se si tratta di un'app che fetcha il meteo delle varie città.
+Sulla creazione del db c'è un problema di concorrenza, la getAll() termina ancora prima che la
+productDatabaseCallback venga invocata, quindi il view model la prima volta che l'app viene installata
+riceve una lista vuota. La volta successiva invece funziona correttamente perchè il database è
+persistente e all'apertura dell'app i prodotti sono già nella tabella.
+Per ovviare a questo problema crea un metodo getAllLive() nel dao e utilizza quello invece della versione
+suspended. Se fai le cose correttamente la vista verrà notificata in automatico ogni volta che
+il contenuto della tabella 'products' cambia.
+Riprovare il caso della prima installazione: dovresti vedere che il fragment riceve 2 aggiornamenti
+dalla livedata, il primo è una lista vuota e il secondo (triggerato dalle modifiche che fa la productDatabaseCallback)
+è la lista corretta.

@@ -1,7 +1,6 @@
 package com.dsorcelli.newfeaturesproject.future
 
 import android.annotation.SuppressLint
-import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -9,8 +8,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dsorcelli.newfeaturesproject.ProductApplication
 import com.dsorcelli.newfeaturesproject.models.Product
 import com.dsorcelli.newfeaturesproject.utils.vectorDrawableStringToIdMap
-import kotlinx.coroutines.*
-import kotlin.coroutines.coroutineContext
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 object Database {
 
@@ -32,27 +31,16 @@ object Database {
 
             // Add sample elements.
             GlobalScope.launch {
-                var prod =
-                    Product(1, "London", 600.00, vectorDrawableStringToIdMap.get("img_london"))
-                productDao.insert(prod)
-                // Add sample elements.
-                prod = Product(2, "Rome", 300.00, vectorDrawableStringToIdMap.get("img_rome"))
-                productDao.insert(prod)
-                // Add sample elements.
-                prod = Product(3, "Paris", 400.00, vectorDrawableStringToIdMap.get("img_paris"))
-                productDao.insert(prod)
-                // Add sample elements.
-                prod = Product(
-                    4,
-                    "Barcelona",
-                    500.00,
-                    vectorDrawableStringToIdMap.get("img_barcelona")
+
+                val productList = listOf(
+                    Product(1, "London", 600.00, vectorDrawableStringToIdMap["img_london"]),
+                    Product(2, "Rome", 300.00, vectorDrawableStringToIdMap["img_rome"]),
+                    Product(3, "Paris", 400.00, vectorDrawableStringToIdMap["img_paris"]),
+                    Product(4, "Barcelona", 500.00, vectorDrawableStringToIdMap["img_barcelona"]),
+                    Product(5, "New York", 900.00, vectorDrawableStringToIdMap["img_new_york"])
                 )
-                productDao.insert(prod)
-                // Add sample elements.
-                prod =
-                    Product(5, "New York", 900.00, vectorDrawableStringToIdMap.get("img_new_york"))
-                productDao.insert(prod)
+
+                productList.forEach { productDao.insert(it)}
             }
         }
 
@@ -65,8 +53,6 @@ object Database {
      * There is one single instance.
      * https://codelabs.developers.google.com/codelabs/android-room-with-a-view-kotlin/
      */
-
-    @SuppressLint("StaticFieldLeak")
     val instance = Room.databaseBuilder(
         ProductApplication.context,
         ShopDatabase::class.java,
@@ -74,6 +60,5 @@ object Database {
     )
         .addCallback(productDatabaseCallback)
         .build()
-
 
 }

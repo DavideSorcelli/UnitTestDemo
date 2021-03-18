@@ -78,7 +78,6 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
             ProductsListFragmentDirections
                 .actionProductsListFragmentToProductDetailsFragment(productId)
         )
-
     }
 
 

@@ -1,22 +1,18 @@
 package com.dsorcelli.newfeaturesproject.viewmodels
 
-import android.app.Application
-import androidx.annotation.RestrictTo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dsorcelli.newfeaturesproject.models.Product
 import com.dsorcelli.newfeaturesproject.repository.ProductRepository
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 class ProductsListVM : ViewModel() {
 
 
     val productsList: LiveData<List<Product>> //Dall'esterno si dà accesso a questa, per non dare possibilità alla view di modificarla.
-                                            //internamente la VM si poggia alla ProductsListMut che è accessibile trmaite get ma private, pertanto può essere usata solo dalla VM
+        //internamente la VM si poggia alla ProductsListMut che è accessibile trmaite get ma private, pertanto può essere usata solo dalla VM
         get() = productsListMut
     private val productsListMut = MutableLiveData<List<Product>>()
 
