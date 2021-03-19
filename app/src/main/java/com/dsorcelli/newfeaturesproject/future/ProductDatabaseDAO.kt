@@ -23,6 +23,9 @@ interface ProductDatabaseDAO {
     @Query("SELECT * FROM products")
     suspend fun getAll() : List<Product>
 
+    @Query("SELECT * FROM products")
+    fun getAllAsLiveData() : LiveData<List<Product>>
+
     @Query("DELETE FROM products")
     fun clear()
 

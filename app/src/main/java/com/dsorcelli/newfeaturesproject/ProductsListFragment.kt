@@ -62,13 +62,12 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
         // viene implementato un observer che aggiorna le viste automaticamente con i nuovi dati
         //non appena ursti ultimi (liveData) cambiano.
         viewModel.productsList.observe(viewLifecycleOwner) {
-            Log.d(TAG, "Received products update: $it")
-            productsListAdapter.productsList = it
-            productsListAdapter.notifyDataSetChanged()
-        }
-
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.listLoadingProgressBar.show(it)
+            //Per evitare si pianti se it è null uso la forma nullable e let
+            it?.let {
+                productsListAdapter.productsList = it
+                productsListAdapter.notifyDataSetChanged()
+                binding.listLoadingProgressBar.show(false)
+            }
         }
     }
 

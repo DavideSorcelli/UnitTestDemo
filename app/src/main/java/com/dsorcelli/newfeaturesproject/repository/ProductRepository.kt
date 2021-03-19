@@ -16,7 +16,6 @@ object ProductRepository {
     //In questo caso la getAll viene chiamata nell'ambito di una coroutine in ProductsListVM
     // Room executes all queries on a separate thread.
     // Observed Flow will notify the observer when the data has changed.
-    //val allWords: Flow<Product>> = productDao.gtAll()
 
 
     // DAO
@@ -25,6 +24,9 @@ object ProductRepository {
     suspend fun insert(product: Product) = mProductDao.insert(product)
 
     suspend fun getAll() = mProductDao.getAll()
+
+    fun getAllAsLiveData() = mProductDao.getAllAsLiveData()
+
 
     suspend fun getProdById(productId: Int) = mProductDao.getById(productId)
 
