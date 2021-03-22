@@ -17,7 +17,6 @@ Utilizzare il navigator per navigare tra i due fragment e passare l'id del prodo
 Definire un grafo di navigazione e inserire nell'activity principale un NavHostFragment.
 Inserire nel fragment ProductDetail un pulsante per tornare alla lista dei prodotti.
 
-
 - quando il device è un telefono in potrait visualizzi gli item dell'adapter come una lista.
 quando il device è un telefono in landscape visualizzi gli item a griglia (2 colonne).
 quando il device è un tablet (portrait/landscape) mostri gli item in una griglia 2 colonne.
@@ -74,3 +73,22 @@ il contenuto della tabella 'products' cambia.
 Riprovare il caso della prima installazione: dovresti vedere che il fragment riceve 2 aggiornamenti
 dalla livedata, il primo è una lista vuota e il secondo (triggerato dalle modifiche che fa la productDatabaseCallback)
 è la lista corretta.
+
+- Rinominare i file che ancora contengono la parola "Product", es: ProductDetailsFragment -> CityMeteoFragment.
+
+- Integrare l'api "api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}" di
+openweathermap.org per recuperare il meteo delle varie città.
+Per le chiamate questa API key: b28f193c6e8448d7fe9dda464d06b20b
+
+- Nella lista dovrà essere visualizzata la temperatura della città e l'icona corrispondente alle condizioni
+meteo attuali. Per recuperare l'icona concatena 'http://openweathermap.org/img/w/' con il campo 'icon'
+che trovi all'interno della risposta all'endpoint citato precedentemente:
+
+Esempio url immagine:
+    http://openweathermap.org/img/w/01d.png (prova a copiarlo su browser)
+    
+Ovviamente l'immagine non va scaricata con retrofit ma con una libreria apposita(vedi Glide, Picasso, Fresco).
+
+- Nel fragment del dettaglio di una città scegli tu cosa visualizzare, ovviamente le informazioni sul meteo
+dovranno essere più precise in questa schermata.
+Più avanti useremo il db per cachare i risultati.
