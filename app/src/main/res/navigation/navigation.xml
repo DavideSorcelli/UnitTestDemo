@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/productsListFragment"
-        android:name="com.dsorcelli.newfeaturesproject.ProductsListFragment"
+        android:name="com.dsorcelli.newfeaturesproject.CityMeteoListFragment"
         android:label="@string/product_list_section_title"
         tools:layout="@layout/fragment_products_list">
         <action
@@ -17,12 +17,15 @@
 
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.dsorcelli.newfeaturesproject.ProductDetailsFragment"
+        android:name="com.dsorcelli.newfeaturesproject.CityMeteoDetailsFragment"
         android:label="@string/product_details_section_title"
         tools:layout="@layout/fragment_product_detail">
         <argument
-            android:name="productId"
+            android:name="cityId"
             app:argType="integer" />
+        <argument
+            android:name="cityName"
+            app:argType="string" />
     </fragment>
 
 </navigation>

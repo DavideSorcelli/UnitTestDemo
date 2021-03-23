@@ -20,23 +20,20 @@
         android:layout_marginTop="@dimen/spacing_md"
         android:textSize="@dimen/txtsize_lg"
         android:text="@string/product_details_name_label" />
-    
 
+    <ImageView
+        android:id="@+id/iv_weather_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
     <TextView
-        android:id="@+id/tv_product_price"
+        android:id="@+id/tv_weather_general"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_md"
         android:textSize="@dimen/txtsize_md"
-        android:text="@string/product_details_price_label" />
+        android:text="weather" />
 
-
-    <Button
-        android:id="@+id/btn_product_meteo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_md"
-        android:text="@string/meteo" />
 
     <Button
         android:id="@+id/btn_product_details_back"

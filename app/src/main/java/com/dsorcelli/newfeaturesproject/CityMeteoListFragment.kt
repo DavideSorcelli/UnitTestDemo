@@ -1,7 +1,6 @@
 package com.dsorcelli.newfeaturesproject
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dsorcelli.newfeaturesproject.databinding.FragmentProductsListBinding
 import com.dsorcelli.newfeaturesproject.utils.show
-import com.dsorcelli.newfeaturesproject.viewmodels.ProductsListVM
+import com.dsorcelli.newfeaturesproject.viewmodels.CityMeteoListVM
 
 
-class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace {
+class CityMeteoListFragment : Fragment(), CityMeteoListAdapter.ProductListItemFace {
 
     //MVVM (Model-view-viewmodel)
     // L'activity/fragment (V) si occupa di aggiornare le viste.
@@ -30,11 +29,11 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
     //se fosse null (!!) una chiamata su essa generi una NPE.
     //Le inizializzazioni e distruzioni saranno fatte su _binding, la chiamata degli elementi verrà fatta su binding per il controllo non null
 
-    private val viewModel by viewModels<ProductsListVM>()
+    private val viewModel by viewModels<CityMeteoListVM>()
 
     // evita di usare le var se puoi, in questo caso productsListAdapter rimarrà sempre di tipo ProductsListAdapter,
     // quindi non avrebbe senso usare una lateinit var, puoi inizializzarlo già vuoto al momento della dichiarazione
-    private val productsListAdapter: ProductsListAdapter = ProductsListAdapter(listener = this)
+    private val cityMeteoListAdapter: CityMeteoListAdapter = CityMeteoListAdapter(listener = this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +48,7 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
         _binding = FragmentProductsListBinding.inflate(inflater, container, false)
         //Si torna come view la root dell'elemento di binding
 
-        binding.productsRv.adapter = productsListAdapter
+        binding.productsRv.adapter = cityMeteoListAdapter
         registerObservers()
 
         return binding.root
@@ -64,18 +63,18 @@ class ProductsListFragment : Fragment(), ProductsListAdapter.ProductListItemFace
         viewModel.productsList.observe(viewLifecycleOwner) {
             //Per evitare si pianti se it è null uso la forma nullable e let
             it?.let {
-                productsListAdapter.productsList = it
-                productsListAdapter.notifyDataSetChanged()
+                cityMeteoListAdapter.cityList = it
+                cityMeteoListAdapter.notifyDataSetChanged()
                 binding.listLoadingProgressBar.show(false)
             }
         }
     }
 
 
-    override fun onProductClick(productId: Int) {
+    override fun onProductClick(cityId: Int, cityName:String) {
         findNavController().navigate(
-            ProductsListFragmentDirections
-                .actionProductsListFragmentToProductDetailsFragment(productId)
+            CityMeteoListFragmentDirections
+                .actionProductsListFragmentToProductDetailsFragment(cityId, cityName)
         )
     }
 

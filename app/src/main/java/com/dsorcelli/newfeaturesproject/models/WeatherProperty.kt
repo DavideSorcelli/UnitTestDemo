@@ -4,7 +4,7 @@ package com.dsorcelli.newfeaturesproject.models
 
 //Moji assegna automaticamente all'oggetto deserializzato i campi contrassegnati nel json dal nome della proprietà
 data class WeatherProperty (
-    val weather : WeatherType,
+    val weather : List<WeatherType>,
     val main: MainWeatherInfos
         )
 

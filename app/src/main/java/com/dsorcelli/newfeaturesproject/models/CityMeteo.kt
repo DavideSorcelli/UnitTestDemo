@@ -8,13 +8,11 @@ import kotlin.random.Random
 import kotlin.random.Random.Default.nextInt
 
 @Entity(tableName = "products")
-data class Product(
+data class CityMeteo(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     val id: Int,
     @ColumnInfo(name = "name")
     val name: String,
-    @ColumnInfo(name="price")
-    val price: Double,
-    val img: Int? = -1 //risorsa R.drawable (rappresentato da intero)
+    val img: Int? = -1, //risorsa R.drawable (rappresentato da intero)
 )

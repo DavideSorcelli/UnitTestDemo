@@ -72,5 +72,9 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_ver"
     testImplementation 'junit:junit:4.13.2'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
+    kapt 'com.github.bumptech.glide:compiler:4.4.0'
+
 
 }

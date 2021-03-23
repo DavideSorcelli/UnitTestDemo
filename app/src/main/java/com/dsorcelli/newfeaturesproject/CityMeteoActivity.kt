@@ -7,7 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.dsorcelli.newfeaturesproject.databinding.ActivityMainBinding
 
-class ShopActivity : AppCompatActivity() {
+class CityMeteoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navHostFragment: NavHostFragment

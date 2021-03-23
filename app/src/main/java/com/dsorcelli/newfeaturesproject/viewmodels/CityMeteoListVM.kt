@@ -3,17 +3,15 @@ package com.dsorcelli.newfeaturesproject.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.dsorcelli.newfeaturesproject.models.Product
-import com.dsorcelli.newfeaturesproject.repository.ProductRepository
-import kotlinx.coroutines.launch
+import com.dsorcelli.newfeaturesproject.models.CityMeteo
+import com.dsorcelli.newfeaturesproject.repository.CityMeteoRepository
 
-class ProductsListVM : ViewModel() {
+class CityMeteoListVM : ViewModel() {
 
 
     //In qyesto modo lego questa products list al risultato live della select * dal DB
     //L'observer si mette nel fragment e guarderà questo elemento
-    var productsList  : LiveData<List<Product>> = ProductRepository.getAllAsLiveData()
+    var productsList  : LiveData<List<CityMeteo>> = CityMeteoRepository.getAllAsLiveData()
 
     //Dall'esterno si dà accesso a questa, per non dare possibilità alla view di modificarla.
     //internamente la VM si poggia alla ProductsListMut che è accessibile trmaite get ma private, pertanto può essere usata solo dalla VM

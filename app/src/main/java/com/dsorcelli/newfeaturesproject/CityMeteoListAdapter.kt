@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dsorcelli.newfeaturesproject.databinding.ProductsListItemBinding
-import com.dsorcelli.newfeaturesproject.models.Product
+import com.dsorcelli.newfeaturesproject.models.CityMeteo
 
-class ProductsListAdapter(
-    var productsList: List<Product> = emptyList(),
+class CityMeteoListAdapter(
+    var cityList: List<CityMeteo> = emptyList(),
     val listener: ProductListItemFace? = null
-) : RecyclerView.Adapter<ProductsListAdapter.ProductsViewHolder>() {
+) : RecyclerView.Adapter<CityMeteoListAdapter.ProductsViewHolder>() {
 
     interface ProductListItemFace {
-        fun onProductClick(productId: Int)
+        fun onProductClick(cityId: Int, cityName: String)
     }
 
     // non hai bisogno di bindare le text view della vista sull'holder,
@@ -28,16 +28,15 @@ class ProductsListAdapter(
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
 
-        val product = productsList[position]
+        val city = cityList[position]
 
         with(holder.binding) {
-            productNumberTv.text = product.id.toString()
-            productNameTv.text = product.name
-            productPriceTv.text = product.price.toString()
-            productIv.setImageResource(product.img!!)
+            productNumberTv.text = city.id.toString()
+            productNameTv.text = city.name
+            productIv.setImageResource(city.img!!)
 
             holder.itemView.setOnClickListener {
-                listener?.onProductClick(product.id)
+                listener?.onProductClick(city.id, city.name)
             }
 
         }
@@ -52,7 +51,7 @@ class ProductsListAdapter(
          */
     }
 
-    override fun getItemCount() = productsList.size
+    override fun getItemCount() = cityList.size
 
 
 }
