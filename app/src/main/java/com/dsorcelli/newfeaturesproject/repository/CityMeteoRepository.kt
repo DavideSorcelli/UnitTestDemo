@@ -1,15 +1,28 @@
 package com.dsorcelli.newfeaturesproject.repository
 
+import android.os.Build
 import android.util.Log
-import com.dsorcelli.newfeaturesproject.future.Database
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.room.Update
+import com.dsorcelli.newfeaturesproject.database.Database
 import com.dsorcelli.newfeaturesproject.models.CityMeteo
 import com.dsorcelli.newfeaturesproject.models.WeatherProperty
 import com.dsorcelli.newfeaturesproject.network.WeatherApi
+import java.net.UnknownHostException
+import java.time.Instant.now
+import java.time.LocalDateTime
+import java.time.LocalDateTime.now
+import java.time.temporal.ChronoUnit
+import java.time.temporal.TemporalAmount
+import java.util.*
 
 
 // Declares the DAO as a private property in the constructor. Pass in the DAO
 // instead of the whole database, because you only need access to the DAO
 object CityMeteoRepository {
+
+    private val METEO_APP_ID = "b28f193c6e8448d7fe9dda464d06b20b"
 
     //La classe Repository si occupa di fare da interfaccia tra la ViewModel e il data layer
     //In pratica fornisce dei metodi per prendere i dati dalla classe database invocandone i metodi primitivi
@@ -30,23 +43,52 @@ object CityMeteoRepository {
 
     fun getAllAsLiveData() = mProductDao.getAllAsLiveData()
 
-
     suspend fun getProdById(productId: Int) = mProductDao.getById(productId)
 
+    fun getProdByIdAsLiveData(productId: Int) = mProductDao.getByIdAsLiveData(productId)
+
     //calls openweatherpi through retrofit
-    suspend fun fetchMeteo(cityName : String) : WeatherProperty? {
-        var result : WeatherProperty?
+    //if successful update the db element with the weather infos -> fragment observer will update the view
+    //If failing -> use DB  cached infos if available
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun fetchMeteo(lastUpdate: Long, cityName: String) {
         try {
-            result =  WeatherApi.retrofitService.getCityWeather(
-                cityName,
-                "b28f193c6e8448d7fe9dda464d06b20b"
-            )
-        } catch (e: Exception) {
-            Log.e("CityMeteoDetailsVM", "error fetching meteo")
-            Log.e("CityMeteoDetailsVM", e.message!!)
-            result = null
+            if (Date().time.minus(1000 * 60) > lastUpdate) {
+                Log.d("Repository", "Request to the API")
+                val apiResponse = WeatherApi.retrofitService.getCityWeather(cityName, METEO_APP_ID, "metric")
+                //Update della città nel DB con le info relative al meteo -> observer del vm si occupa di aggiornarlo tramite la chiamata precedente a getByIdAslIveData e l'observer
+                Log.d("Repository", "Response code ${apiResponse.code()}")
+                if (apiResponse.isSuccessful) {
+                    val result = apiResponse.body()!!
+                    mProductDao.updateWeatherInfos(
+                        cityName,
+                        result.weather[0].icon,
+                        result.weather[0].main,
+                        result.main.temp.toString(),
+                        result.wind.speed.toString(),
+                        result.clouds.all.toString(),
+                        Date().time
+                    )
+                }
+            }
+            else
+            {
+                Log.d("Repository", "Retrieving from cache")
+            }
+
         }
-        return result
+        catch(e:UnknownHostException)
+        {
+            //Does nothing, simply continues to show data cached from the database
+            Log.e("CityMeteoDetailsVM", "error fetching meteo")
+            Log.e("CityMeteoDetailsVM", e.toString()!!)
+        }
+        catch (e: Exception) {
+            //Does nothing, simply continues to show data cached from the database
+            Log.e("CityMeteoDetailsVM", "error fetching meteo")
+            Log.e("CityMeteoDetailsVM", e.toString()!!)
+        }
     }
+
 
 }

@@ -26,6 +26,9 @@
         <argument
             android:name="cityName"
             app:argType="string" />
+        <argument
+            android:name="lastUpdate"
+            app:argType="long" />
     </fragment>
 
 </navigation>

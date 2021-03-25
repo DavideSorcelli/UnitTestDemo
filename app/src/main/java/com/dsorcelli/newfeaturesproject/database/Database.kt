@@ -1,5 +1,7 @@
-package com.dsorcelli.newfeaturesproject.future
+package com.dsorcelli.newfeaturesproject.database
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -9,6 +11,8 @@ import com.dsorcelli.newfeaturesproject.models.CityMeteo
 import com.dsorcelli.newfeaturesproject.utils.vectorDrawableStringToIdMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime.now
+import java.util.*
 
 object Database {
 
@@ -20,6 +24,7 @@ object Database {
     }
 
     private val productDatabaseCallback: RoomDatabase.Callback = object : RoomDatabase.Callback() {
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
 
@@ -32,11 +37,11 @@ object Database {
             GlobalScope.launch {
 
                 val productList = listOf(
-                    CityMeteo(1, "London",  vectorDrawableStringToIdMap["img_london"]),
-                    CityMeteo(2, "Rome",  vectorDrawableStringToIdMap["img_rome"]),
-                    CityMeteo(3, "Paris", vectorDrawableStringToIdMap["img_paris"]),
-                    CityMeteo(4, "Barcelona", vectorDrawableStringToIdMap["img_barcelona"]),
-                    CityMeteo(5, "New York", vectorDrawableStringToIdMap["img_new_york"])
+                    CityMeteo(1, "London",  vectorDrawableStringToIdMap["img_london"], null, null, null, null, null, Date().time),
+                    CityMeteo(2, "Rome",  vectorDrawableStringToIdMap["img_rome"], null, null, null, null, null,Date().time),
+                    CityMeteo(3, "Paris", vectorDrawableStringToIdMap["img_paris"], null, null, null, null, null,Date().time),
+                    CityMeteo(4, "Barcelona", vectorDrawableStringToIdMap["img_barcelona"], null, null, null, null, null,Date().time),
+                    CityMeteo(5, "New York", vectorDrawableStringToIdMap["img_new_york"], null, null, null, null, null,Date().time)
                 )
 
                 productList.forEach { productDao.insert(it)}

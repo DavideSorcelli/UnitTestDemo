@@ -14,5 +14,5 @@
     <dimen name="products_list_icons_size_xxl">300dp</dimen>
 
     <dimen name="card_radius">4dp</dimen>
-    <dimen name="card_elev">4dp</dimen>
+    <dimen name="card_elev">8dp</dimen>
 </resources>

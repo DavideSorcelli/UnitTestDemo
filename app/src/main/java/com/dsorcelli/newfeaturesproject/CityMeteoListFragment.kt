@@ -60,7 +60,7 @@ class CityMeteoListFragment : Fragment(), CityMeteoListAdapter.ProductListItemFa
         //In questo caso è una LiveData che contiene una lista di prodotti e qui
         // viene implementato un observer che aggiorna le viste automaticamente con i nuovi dati
         //non appena ursti ultimi (liveData) cambiano.
-        viewModel.productsList.observe(viewLifecycleOwner) {
+        viewModel.citiesList.observe(viewLifecycleOwner) {
             //Per evitare si pianti se it è null uso la forma nullable e let
             it?.let {
                 cityMeteoListAdapter.cityList = it
@@ -71,10 +71,10 @@ class CityMeteoListFragment : Fragment(), CityMeteoListAdapter.ProductListItemFa
     }
 
 
-    override fun onProductClick(cityId: Int, cityName:String) {
+    override fun onProductClick(cityId: Int, cityName:String, lastUpdate:Long) {
         findNavController().navigate(
             CityMeteoListFragmentDirections
-                .actionProductsListFragmentToProductDetailsFragment(cityId, cityName)
+                .actionProductsListFragmentToProductDetailsFragment(cityId, cityName, lastUpdate)
         )
     }
 

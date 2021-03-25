@@ -12,7 +12,7 @@ class CityMeteoListAdapter(
 ) : RecyclerView.Adapter<CityMeteoListAdapter.ProductsViewHolder>() {
 
     interface ProductListItemFace {
-        fun onProductClick(cityId: Int, cityName: String)
+        fun onProductClick(cityId: Int, cityName: String, lastUpdate: Long)
     }
 
     // non hai bisogno di bindare le text view della vista sull'holder,
@@ -31,12 +31,11 @@ class CityMeteoListAdapter(
         val city = cityList[position]
 
         with(holder.binding) {
-            productNumberTv.text = city.id.toString()
-            productNameTv.text = city.name
-            productIv.setImageResource(city.img!!)
+            productNameTv.text = city.cityName
+            productIv.setImageResource(city.cityImg!!)
 
             holder.itemView.setOnClickListener {
-                listener?.onProductClick(city.id, city.name)
+                listener?.onProductClick(city.cityId, city.cityName, city.lastUpdate)
             }
 
         }

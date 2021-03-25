@@ -11,7 +11,8 @@ class CityMeteoListVM : ViewModel() {
 
     //In qyesto modo lego questa products list al risultato live della select * dal DB
     //L'observer si mette nel fragment e guarderà questo elemento
-    var productsList  : LiveData<List<CityMeteo>> = CityMeteoRepository.getAllAsLiveData()
+    var citiesList  : LiveData<List<CityMeteo>> = CityMeteoRepository.getAllAsLiveData()
+
 
     //Dall'esterno si dà accesso a questa, per non dare possibilità alla view di modificarla.
     //internamente la VM si poggia alla ProductsListMut che è accessibile trmaite get ma private, pertanto può essere usata solo dalla VM
