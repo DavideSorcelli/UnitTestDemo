@@ -96,5 +96,8 @@ Più avanti useremo il db per cachare i risultati.
 - creare un setting per far selezionare all'utente quale sistema di misura vuole utilizzare,
 salvare questo valore nelle shared preferences e usarlo per il parametro 'units' dell'api.
 
+- aggiungere il pull to refresh alla schermata del dettaglio
+
 ## Bug fixing 
 - la pagina del dettaglio in lanscape viene tagliata, controlla che il layout sia valido sulle varie tipologie di schermo
+- fixare il back nel'action bar
