@@ -15,14 +15,24 @@ interface CityMeteoDatabaseDAO {
     @Insert
     suspend fun insert(cityMeteo: CityMeteo)
 
+    // TODO: use @Update annotation
     @Query("UPDATE products SET weather_icon= :icon, condition= :condition , temperature= :temp, wind= :wind, clouds= :clouds, last_update= :lastUpdate  WHERE name =:name")
     suspend fun updateWeatherInfos(name: String, icon: String, condition: String, temp: String, wind: String, clouds: String, lastUpdate: kotlin.Long)
 
     @Query("SELECT * FROM products WHERE id= :id")
     suspend fun getById(id: Int): CityMeteo
 
+    @Query("SELECT * FROM products WHERE name= :name")
+    suspend fun getByName(name: String): CityMeteo
+
     @Query("SELECT * FROM products WHERE id= :id")
     fun getByIdAsLiveData(id: Int): LiveData<CityMeteo>
+
+    @Query("SELECT * FROM products WHERE name= :name")
+    fun getByNameAsLiveData(name: String): LiveData<CityMeteo>
+
+    @Query("SELECT last_update FROM products WHERE name= :name")
+    fun getCachedTimeByName(name: String): Long
 
     @Query("SELECT * FROM products")
     suspend fun getAll() : List<CityMeteo>

@@ -71,10 +71,10 @@ class CityMeteoListFragment : Fragment(), CityMeteoListAdapter.ProductListItemFa
     }
 
 
-    override fun onProductClick(cityId: Int, cityName:String, lastUpdate:Long) {
+    override fun onProductClick(cityName:String) {
         findNavController().navigate(
             CityMeteoListFragmentDirections
-                .actionProductsListFragmentToProductDetailsFragment(cityId, cityName, lastUpdate)
+                .actionProductsListFragmentToProductDetailsFragment(cityName)
         )
     }
 

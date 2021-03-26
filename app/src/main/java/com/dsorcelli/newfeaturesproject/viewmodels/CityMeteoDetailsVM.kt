@@ -1,9 +1,5 @@
 package com.dsorcelli.newfeaturesproject.viewmodels
 
-import android.os.Build
-import android.util.Log
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,15 +8,19 @@ import com.dsorcelli.newfeaturesproject.models.CityMeteo
 import com.dsorcelli.newfeaturesproject.repository.CityMeteoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 class CityMeteoDetailsVM() : ViewModel() {
 
-    fun registerForMeteoUpdates(productId: Int) = CityMeteoRepository.getProdByIdAsLiveData(productId)
+    val cityMeteoLive: LiveData<CityMeteo?> get() =  cityMeteoLiveMut
+    private val cityMeteoLiveMut = MutableLiveData<CityMeteo?>()
 
-    @RequiresApi(Build.VERSION_CODES.O) // TODO: ?? non serve
-    fun fetchMeteo(lastUpdate:Long, cityName:String) = viewModelScope.launch(Dispatchers.IO) {
-        CityMeteoRepository.fetchMeteo(lastUpdate,cityName)
+    fun registerForMeteoUpdates(cityName: String) =
+        CityMeteoRepository.getCityMeteoByNameLiveData(cityName)
+
+    fun fetchMeteo(cityName: String) = viewModelScope.launch(Dispatchers.IO) {
+        val cityMeteo: CityMeteo? = CityMeteoRepository.fetchMeteo(cityName)
+        cityMeteoLiveMut.postValue(cityMeteo)
     }
+
 }
 

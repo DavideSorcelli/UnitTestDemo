@@ -29,6 +29,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String", "METEO_API_KEY", '"b28f193c6e8448d7fe9dda464d06b20b"')
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

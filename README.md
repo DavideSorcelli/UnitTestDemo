@@ -97,6 +97,4 @@ Più avanti useremo il db per cachare i risultati.
 salvare questo valore nelle shared preferences e usarlo per il parametro 'units' dell'api.
 
 ## Bug fixing 
-- con l'app appena installata da 0, per i primi 60 secondi non viene mai fatta la richiesta al backend,
-viene caricata la cache, ma il db è vuoto :) 
 - la pagina del dettaglio in lanscape viene tagliata, controlla che il layout sia valido sulle varie tipologie di schermo

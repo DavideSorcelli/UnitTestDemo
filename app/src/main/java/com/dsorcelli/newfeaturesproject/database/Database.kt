@@ -36,12 +36,11 @@ object Database {
             GlobalScope.launch {
 
                 val productList = listOf(
-                    // TODO: usa i costruttori con i default values
-                    CityMeteo(1, "London",  vectorDrawableStringToIdMap["img_london"], null, null, null, null, null, Date().time),
-                    CityMeteo(2, "Rome",  vectorDrawableStringToIdMap["img_rome"], null, null, null, null, null,Date().time),
-                    CityMeteo(3, "Paris", vectorDrawableStringToIdMap["img_paris"], null, null, null, null, null,Date().time),
-                    CityMeteo(4, "Barcelona", vectorDrawableStringToIdMap["img_barcelona"], null, null, null, null, null,Date().time),
-                    CityMeteo(5, "New York", vectorDrawableStringToIdMap["img_new_york"], null, null, null, null, null,Date().time)
+                    CityMeteo(1, "London",  vectorDrawableStringToIdMap["img_london"]),
+                    CityMeteo(2, "Rome",  vectorDrawableStringToIdMap["img_rome"]),
+                    CityMeteo(3, "Paris", vectorDrawableStringToIdMap["img_paris"]),
+                    CityMeteo(4, "Barcelona", vectorDrawableStringToIdMap["img_barcelona"]),
+                    CityMeteo(5, "New York", vectorDrawableStringToIdMap["img_new_york"]),
                 )
 
                 productList.forEach { productDao.insert(it)}

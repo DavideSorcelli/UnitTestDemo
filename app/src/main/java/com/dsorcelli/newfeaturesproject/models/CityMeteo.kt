@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.dsorcelli.newfeaturesproject.R
 import java.time.LocalDateTime
+import java.util.*
 import kotlin.random.Random
 import kotlin.random.Random.Default.nextInt
 
@@ -17,16 +18,16 @@ data class CityMeteo(
     val cityName: String,
     val cityImg: Int? = -1, //risorsa R.drawable (rappresentato da intero)
     @ColumnInfo(name = "condition")
-    val weatherCondition : String?,
+    val weatherCondition : String? = null,
     @ColumnInfo(name = "temperature")
-    val weatherTemp : String?,
+    val weatherTemp : String? = null,
     @ColumnInfo(name = "wind")
-    val weatherWind : String?,
+    val weatherWind : String? = null,
     @ColumnInfo(name = "clouds")
-    val weatherCloudsPerc : String?,
+    val weatherCloudsPerc : String? = null,
     @ColumnInfo(name = "weather_icon")
-    val weatherIcon : String?, //id da appendere alla richiesta all'api
+    val weatherIcon : String? = null, //id da appendere alla richiesta all'api
     @ColumnInfo(name = "last_update")
-    val lastUpdate : Long //id da appendere alla richiesta all'api
+    val lastUpdate : Long = 0L //id da appendere alla richiesta all'api
 
 )
