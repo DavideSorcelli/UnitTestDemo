@@ -18,7 +18,7 @@ class CityMeteoDetailsVM() : ViewModel() {
 
     fun registerForMeteoUpdates(productId: Int) = CityMeteoRepository.getProdByIdAsLiveData(productId)
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O) // TODO: ?? non serve
     fun fetchMeteo(lastUpdate:Long, cityName:String) = viewModelScope.launch(Dispatchers.IO) {
         CityMeteoRepository.fetchMeteo(lastUpdate,cityName)
     }

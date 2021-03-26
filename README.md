@@ -92,3 +92,11 @@ Ovviamente l'immagine non va scaricata con retrofit ma con una libreria apposita
 - Nel fragment del dettaglio di una città scegli tu cosa visualizzare, ovviamente le informazioni sul meteo
 dovranno essere più precise in questa schermata.
 Più avanti useremo il db per cachare i risultati.
+
+- creare un setting per far selezionare all'utente quale sistema di misura vuole utilizzare,
+salvare questo valore nelle shared preferences e usarlo per il parametro 'units' dell'api.
+
+## Bug fixing 
+- con l'app appena installata da 0, per i primi 60 secondi non viene mai fatta la richiesta al backend,
+viene caricata la cache, ma il db è vuoto :) 
+- la pagina del dettaglio in lanscape viene tagliata, controlla che il layout sia valido sulle varie tipologie di schermo

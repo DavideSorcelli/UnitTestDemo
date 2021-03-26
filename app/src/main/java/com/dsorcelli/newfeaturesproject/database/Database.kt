@@ -11,7 +11,6 @@ import com.dsorcelli.newfeaturesproject.models.CityMeteo
 import com.dsorcelli.newfeaturesproject.utils.vectorDrawableStringToIdMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime.now
 import java.util.*
 
 object Database {
@@ -20,7 +19,7 @@ object Database {
     @Database(entities = [CityMeteo::class], version = 1, exportSchema = false)
     abstract class ShopDatabase : RoomDatabase() {
         //The database contains the abstract constructor for the DAOs
-        abstract fun productDao(): CityMeteoDatabaseDAO  //PERCHè UN METODO ASTRATTO?
+        abstract fun citiesDao(): CityMeteoDatabaseDAO  //PERCHè UN METODO ASTRATTO?
     }
 
     private val productDatabaseCallback: RoomDatabase.Callback = object : RoomDatabase.Callback() {
@@ -28,7 +27,7 @@ object Database {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
 
-            val productDao = instance.productDao()
+            val productDao = instance.citiesDao()
 
             //Delete content if exists
             //-----
@@ -37,6 +36,7 @@ object Database {
             GlobalScope.launch {
 
                 val productList = listOf(
+                    // TODO: usa i costruttori con i default values
                     CityMeteo(1, "London",  vectorDrawableStringToIdMap["img_london"], null, null, null, null, null, Date().time),
                     CityMeteo(2, "Rome",  vectorDrawableStringToIdMap["img_rome"], null, null, null, null, null,Date().time),
                     CityMeteo(3, "Paris", vectorDrawableStringToIdMap["img_paris"], null, null, null, null, null,Date().time),

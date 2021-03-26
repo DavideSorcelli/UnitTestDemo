@@ -2,19 +2,11 @@ package com.dsorcelli.newfeaturesproject.repository
 
 import android.os.Build
 import android.util.Log
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.room.Update
 import com.dsorcelli.newfeaturesproject.database.Database
 import com.dsorcelli.newfeaturesproject.models.CityMeteo
-import com.dsorcelli.newfeaturesproject.models.WeatherProperty
 import com.dsorcelli.newfeaturesproject.network.WeatherApi
 import java.net.UnknownHostException
-import java.time.Instant.now
-import java.time.LocalDateTime
-import java.time.LocalDateTime.now
-import java.time.temporal.ChronoUnit
-import java.time.temporal.TemporalAmount
 import java.util.*
 
 
@@ -22,6 +14,8 @@ import java.util.*
 // instead of the whole database, because you only need access to the DAO
 object CityMeteoRepository {
 
+
+    // TODO: move to service, use const (or move to gradle BuildConfigFields)
     private val METEO_APP_ID = "b28f193c6e8448d7fe9dda464d06b20b"
 
     //La classe Repository si occupa di fare da interfaccia tra la ViewModel e il data layer
@@ -35,7 +29,7 @@ object CityMeteoRepository {
 
 
     // DAO
-    private val mProductDao = Database.instance.productDao()
+    private val mProductDao = Database.instance.citiesDao()
 
     suspend fun insert(cityMeteo: CityMeteo) = mProductDao.insert(cityMeteo)
 
@@ -50,7 +44,7 @@ object CityMeteoRepository {
     //calls openweatherpi through retrofit
     //if successful update the db element with the weather infos -> fragment observer will update the view
     //If failing -> use DB  cached infos if available
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O) // TODO: ??
     suspend fun fetchMeteo(lastUpdate: Long, cityName: String) {
         try {
             if (Date().time.minus(1000 * 60) > lastUpdate) {
@@ -73,6 +67,7 @@ object CityMeteoRepository {
             }
             else
             {
+                // TODO: il meccanismo di cache va messo nell'else, se la richiesta fallisce controlli quanto è vecchia la cache, se è recente rispondi con quella
                 Log.d("Repository", "Retrieving from cache")
             }
 
@@ -81,12 +76,12 @@ object CityMeteoRepository {
         {
             //Does nothing, simply continues to show data cached from the database
             Log.e("CityMeteoDetailsVM", "error fetching meteo")
-            Log.e("CityMeteoDetailsVM", e.toString()!!)
+            Log.e("CityMeteoDetailsVM", e.toString())
         }
         catch (e: Exception) {
             //Does nothing, simply continues to show data cached from the database
             Log.e("CityMeteoDetailsVM", "error fetching meteo")
-            Log.e("CityMeteoDetailsVM", e.toString()!!)
+            Log.e("CityMeteoDetailsVM", e.toString())
         }
     }
 

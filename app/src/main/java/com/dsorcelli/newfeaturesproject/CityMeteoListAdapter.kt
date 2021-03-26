@@ -12,6 +12,7 @@ class CityMeteoListAdapter(
 ) : RecyclerView.Adapter<CityMeteoListAdapter.ProductsViewHolder>() {
 
     interface ProductListItemFace {
+        // TODO: nelle callback dell'adapter passa meno dati possibili, in questo caso basta cityId ti ricavi le altre info dal db
         fun onProductClick(cityId: Int, cityName: String, lastUpdate: Long)
     }
 
