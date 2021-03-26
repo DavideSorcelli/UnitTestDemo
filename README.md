@@ -98,6 +98,10 @@ salvare questo valore nelle shared preferences e usarlo per il parametro 'units'
 
 - aggiungere il pull to refresh alla schermata del dettaglio
 
+- inserire spinner di caricamento della schermata detail
+
+- inserire dialog (bottomsheetdialog?) per gestire l'errore di fetch del dettaglio
+
 ## Bug fixing 
 - la pagina del dettaglio in lanscape viene tagliata, controlla che il layout sia valido sulle varie tipologie di schermo
 - fixare il back nel'action bar
