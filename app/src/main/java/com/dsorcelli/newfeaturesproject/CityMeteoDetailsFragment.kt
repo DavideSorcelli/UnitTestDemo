@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.module.AppGlideModule
 import com.dsorcelli.newfeaturesproject.databinding.FragmentProductDetailBinding
 import com.dsorcelli.newfeaturesproject.viewmodels.CityMeteoDetailsVM
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -81,6 +82,13 @@ class CityMeteoDetailsFragment : Fragment() {
                 }
             } ?: run {
                 // TODO: show error dialog with navigateUp action
+                val error_btm_sheet = layoutInflater.inflate(R.layout.error_bottom_sheet, null)
+                val dialog = context?.let { it1 -> BottomSheetDialog(it1) }
+                dialog?.setContentView(error_btm_sheet)
+                error_btm_sheet.setOnClickListener {
+                    dialog?.dismiss()
+                }
+                dialog?.show()
             }
 
         }
