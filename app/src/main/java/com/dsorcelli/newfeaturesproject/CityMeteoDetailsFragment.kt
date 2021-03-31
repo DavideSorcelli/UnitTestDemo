@@ -1,5 +1,6 @@
 package com.dsorcelli.newfeaturesproject
 
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -39,6 +40,16 @@ class CityMeteoDetailsFragment : Fragment() {
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
 
         val cityName = args.cityName
+
+        viewModel.isLoading.observe(viewLifecycleOwner)
+        {
+            it?.let {
+                if(it)
+                    binding.cityMeteoDetailsProgressBar?.visibility = View.VISIBLE
+                else
+                    binding.cityMeteoDetailsProgressBar?.visibility = View.GONE
+            }
+        }
         viewModel.fetchMeteo(cityName)
 
         viewModel.cityMeteoLive.observe(viewLifecycleOwner) {
@@ -47,7 +58,6 @@ class CityMeteoDetailsFragment : Fragment() {
                 with(binding) {
 
                     ivProductImg.setImageResource(it.cityImg!!)
-                    tvProductName?.text = it.cityName
                     // TODO: ricordati che quando aggiungi/rimuovi delle view da un layout devi aggiornare anche le sue varianti (landscape, sw-600, ecc..)
                     tvWeatherGeneral.text = it.weatherCondition //Perchè vuole il nullable (sotto non lo chiede)?
                     // TODO: crea le stringhe in strings.xml
@@ -109,6 +119,16 @@ class CityMeteoDetailsFragment : Fragment() {
         binding.btnProductDetailsBack.setOnClickListener {
             findNavController().navigateUp()
         }
+
+
+
+        binding.meteoDetailsSwipe.setOnRefreshListener {
+            viewModel.fetchMeteo(cityName)
+            binding.meteoDetailsSwipe.isRefreshing = false
+        }
+
+
+
 
         //Si setta come view la root dell'elemento del binding
         return binding.root

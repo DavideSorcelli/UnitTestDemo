@@ -1,107 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/spacing_md">
 
-    <ImageView
-        android:id="@+id/iv_product_img"
-        android:layout_width="@dimen/products_list_icons_size_xxl"
-        android:layout_height="@dimen/products_list_icons_size_xxl"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_line_art_new_york" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_weather_img"
-        android:elevation="@dimen/card_elev"
-        android:layout_marginTop="@dimen/spacing_md"
-        app:cardCornerRadius="@dimen/card_radius"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/meteo_details_swipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
 
             <ImageView
-                android:id="@+id/iv_weather_img"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:srcCompat="@android:drawable/checkbox_off_background" />
+                android:id="@+id/iv_product_img"
+                android:layout_width="@dimen/products_list_icons_size_xxl"
+                android:layout_height="@dimen/products_list_icons_size_xxl"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_line_art_new_york" />
 
-            <TextView
-                android:id="@+id/tv_weather_general"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_weather_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
+                android:elevation="@dimen/card_elev"
+                app:cardCornerRadius="@dimen/card_radius">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_weather_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+                    <TextView
+                        android:id="@+id/tv_weather_general"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:gravity="center"
+                        android:text="weather"
+                        android:textSize="@dimen/txtsize_md" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_weather_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:elevation="@dimen/card_elev"
+                app:cardCornerRadius="@dimen/card_radius">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_weather_temp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:gravity="center"
+                        android:text="weather"
+                        android:textSize="@dimen/txtsize_md" />
+
+                    <TextView
+                        android:id="@+id/tv_weather_wind"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:gravity="center"
+                        android:text="weather"
+                        android:textSize="@dimen/txtsize_md" />
+
+                    <TextView
+                        android:id="@+id/tv_weather_clouds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:gravity="center"
+                        android:text="weather"
+                        android:textSize="@dimen/txtsize_md" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_weather_lastUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
                 android:gravity="center"
                 android:text="weather"
                 android:textSize="@dimen/txtsize_md" />
+
+            <Button
+                android:id="@+id/btn_product_details_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:text="@string/back" />
 
         </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_weather_details"
-        android:elevation="@dimen/card_elev"
-        android:layout_marginTop="@dimen/spacing_md"
-        app:cardCornerRadius="@dimen/card_radius"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_weather_temp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_md"
-                android:gravity="center"
-                android:text="weather"
-                android:textSize="@dimen/txtsize_md" />
-            <TextView
-                android:id="@+id/tv_weather_wind"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_md"
-                android:gravity="center"
-                android:text="weather"
-                android:textSize="@dimen/txtsize_md" />
-            <TextView
-                android:id="@+id/tv_weather_clouds"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_md"
-                android:gravity="center"
-                android:text="weather"
-                android:textSize="@dimen/txtsize_md" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/tv_weather_lastUpdate"
+    <ProgressBar
+        android:id="@+id/city_meteo_details_progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_lg"
-        android:gravity="center"
-        android:text="weather"
-        android:textSize="@dimen/txtsize_md" />
-
-    <Button
-        android:id="@+id/btn_product_details_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_md"
-        android:text="@string/back" />
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/meteo_details_swipe" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
