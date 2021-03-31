@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
 import com.bumptech.glide.module.AppGlideModule
 import com.dsorcelli.newfeaturesproject.databinding.FragmentProductDetailBinding
@@ -141,6 +142,8 @@ class CityMeteoDetailsFragment : Fragment() {
         //Si setta come view la root dell'elemento del binding
         return binding.root
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
