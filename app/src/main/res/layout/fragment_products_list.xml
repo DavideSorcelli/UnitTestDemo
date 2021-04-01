@@ -30,4 +30,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

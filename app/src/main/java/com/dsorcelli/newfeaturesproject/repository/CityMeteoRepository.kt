@@ -5,6 +5,7 @@ import com.dsorcelli.newfeaturesproject.BuildConfig
 import com.dsorcelli.newfeaturesproject.database.Database
 import com.dsorcelli.newfeaturesproject.models.CityMeteo
 import com.dsorcelli.newfeaturesproject.network.WeatherApi
+import com.dsorcelli.newfeaturesproject.utils.Storage
 import java.net.UnknownHostException
 import java.util.*
 
@@ -48,11 +49,15 @@ object CityMeteoRepository {
     suspend fun fetchMeteo(cityName: String): CityMeteo? {
 
         try {
+            Log.d("Repository","Getting unit measure preferences")
+            val measUnit = Storage.measureUnit.value
+            Log.d("Repository",measUnit)
+
             Log.d("Repository", "Request to the API")
             val apiResponse = WeatherApi.retrofitService.getCityWeather(
                 cityName,
                 BuildConfig.METEO_API_KEY,
-                "metric"
+                measUnit
             )
             //Update della città nel DB con le info relative al meteo -> observer del vm si occupa di aggiornarlo tramite la chiamata precedente a getByIdAslIveData e l'observer
             Log.d("Repository", "Response code ${apiResponse.code()}")

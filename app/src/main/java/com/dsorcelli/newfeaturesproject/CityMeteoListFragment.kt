@@ -51,6 +51,9 @@ class CityMeteoListFragment : Fragment(), CityMeteoListAdapter.ProductListItemFa
         binding.productsRv.adapter = cityMeteoListAdapter
         registerObservers()
 
+        binding.fbSettings?.setOnClickListener{
+            findNavController().navigate(CityMeteoListFragmentDirections.actionProductsListFragmentToSettingsFragment())
+        }
         return binding.root
     }
 
@@ -77,6 +80,8 @@ class CityMeteoListFragment : Fragment(), CityMeteoListAdapter.ProductListItemFa
                 .actionProductsListFragmentToProductDetailsFragment(cityName)
         )
     }
+
+
 
 
     override fun onDestroyView() {

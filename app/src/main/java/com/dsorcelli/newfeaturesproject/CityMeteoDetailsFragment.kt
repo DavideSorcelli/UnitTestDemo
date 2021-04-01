@@ -94,36 +94,6 @@ class CityMeteoDetailsFragment : Fragment() {
 
         }
 
-//        viewModel.registerForMeteoUpdates(cityName).observe(viewLifecycleOwner) {
-//            it?.let {
-//                with(binding) {
-//                    ivProductImg.setImageResource(it.cityImg!!)
-//                    tvProductName?.text = it.cityName
-//                    // TODO: ricordati che quando aggiungi/rimuovi delle view da un layout devi aggiornare anche le sue varianti (landscape, sw-600, ecc..)
-//                    tvWeatherGeneral?.text = it.weatherCondition //Perchè vuole il nullable (sotto non lo chiede)?
-//                    // TODO: crea le stringhe in strings.xml
-//                    tvWeatherTemp?.text = "Avg temperature: ${it.weatherTemp}"
-//                    tvWeatherWind?.text ="Wind: ${ it.weatherWind}"
-//                    tvWeatherClouds?.text = "Clouds: ${it.weatherCloudsPerc}%"
-//
-//                    // TODO: fai un metodo nelle utility per convertire le date (o un'extension function di kotlin)
-//                    val date = Date(it.lastUpdate)
-//                    val format = SimpleDateFormat("yyyy.MM.dd HH:mm") // TODO: manca il locale
-//                    tvWeatherLastUpdate?.text = "Last updated: ${format.format(date)}"
-//
-//                    if(it.weatherIcon!=null){
-//                        // TODO: crea sempre delle costanti
-//                        val imgUrl = "https://openweathermap.org/img/w/"+it.weatherIcon+".png"
-//                        Glide.with(context)
-//                            .load(imgUrl)
-//                            .into(ivWeatherImg)
-//                    }
-//                }
-//            } ?: run {
-//                Log.e(TAG, "Product not found")
-//            }
-//        }
-
 
         binding.btnProductDetailsBack.setOnClickListener {
             findNavController().navigateUp()
@@ -135,9 +105,6 @@ class CityMeteoDetailsFragment : Fragment() {
             viewModel.fetchMeteo(cityName)
             binding.meteoDetailsSwipe.isRefreshing = false
         }
-
-
-
 
         //Si setta come view la root dell'elemento del binding
         return binding.root
