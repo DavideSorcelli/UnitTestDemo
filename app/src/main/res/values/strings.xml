@@ -11,4 +11,8 @@
     <string name="product_list_section_title">Product list</string>
     <string name="product_details_section_title">Product details</string>
     <string name="meteo">meteo</string>
+
+
+    <string name="error">Error</string>
+    <string name="error_no_internet">No internet connection</string>
 </resources>

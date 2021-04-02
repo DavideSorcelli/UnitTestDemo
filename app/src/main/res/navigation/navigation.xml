@@ -26,11 +26,31 @@
         <argument
             android:name="cityName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_bottomErrorDialog"
+            app:destination="@id/bottomErrorDialog" />
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.dsorcelli.newfeaturesproject.viewmodels.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <dialog
+        android:id="@+id/bottomErrorDialog"
+        android:name="com.dsorcelli.newfeaturesproject.dialogs.BottomErrorDialog"
+        android:label="BottomErrorDialog"
+        tools:layout="@layout/error_bottom_sheet">
+        <argument
+            android:name="titleResId"
+            app:argType="integer" />
+        <argument
+            android:name="bodyResId"
+            app:argType="integer" />
+        <argument
+            android:name="popUpToFragment"
+            app:argType="integer" />
+    </dialog>
 
 </navigation>

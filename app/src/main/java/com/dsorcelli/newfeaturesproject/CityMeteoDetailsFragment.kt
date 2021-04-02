@@ -82,14 +82,21 @@ class CityMeteoDetailsFragment : Fragment() {
 
                 }
             } ?: run {
-                // TODO: show error dialog with navigateUp action
-                val error_btm_sheet = layoutInflater.inflate(R.layout.error_bottom_sheet, null)
-                val dialog = context?.let { it1 -> BottomSheetDialog(it1) }
-                dialog?.setContentView(error_btm_sheet)
-                error_btm_sheet.setOnClickListener {
-                    dialog?.dismiss()
-                }
-                dialog?.show()
+
+                findNavController().navigate(CityMeteoDetailsFragmentDirections
+                    .actionProductDetailsFragmentToBottomErrorDialog(
+                        titleResId = R.string.error,
+                        bodyResId = R.string.error_no_internet,
+                        popUpToFragment = R.id.productsListFragment
+                    ))
+//                // TODO: show error dialog with navigateUp action
+//                val error_btm_sheet = layoutInflater.inflate(R.layout.error_bottom_sheet, null)
+//                val dialog = context?.let { it1 -> BottomSheetDialog(it1) }
+//                dialog?.setContentView(error_btm_sheet)
+//                error_btm_sheet.setOnClickListener {
+//                    dialog?.dismiss()
+//                }
+//                dialog?.show()
             }
 
         }
